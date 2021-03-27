@@ -11,6 +11,7 @@ import com.example.newskotlin.R
 import com.example.newskotlin.TextChanger
 import com.example.newskotlin.model.ApiServiceInterface
 import com.example.newskotlin.ui.OnNavigationListener
+import com.example.newskotlin.ui.activity.ToolBarManager
 import com.example.newskotlin.ui.fragments.DetailNewsFragment
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.news_list_item.view.*
@@ -20,6 +21,7 @@ class NewsListAdapter(activityContext: Context, states: ArrayList<ApiServiceInte
     private val activityContext: Context = activityContext
     private val inflater: LayoutInflater = LayoutInflater.from(activityContext)
     private val onNavigationListener: OnNavigationListener = activityContext as OnNavigationListener
+    private val toolBarManager: ToolBarManager = activityContext as ToolBarManager
     private val states: ArrayList<ApiServiceInterface.Articles> = states
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -66,6 +68,7 @@ class NewsListAdapter(activityContext: Context, states: ArrayList<ApiServiceInte
         holder.headerItemPublished.text = state.publishedAt
         holder.itemView.setOnClickListener {
             onNavigationListener.onNavigate(DetailNewsFragment(state), true)
+            toolBarManager.showBackButton()
         }
     }
 

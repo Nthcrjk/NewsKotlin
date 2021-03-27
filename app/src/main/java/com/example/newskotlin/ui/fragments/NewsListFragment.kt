@@ -13,6 +13,7 @@ import com.example.newskotlin.model.ApiServiceInterface
 import com.example.newskotlin.presentation.presenter.NewsListPresenter
 import com.example.newskotlin.presentation.view.NewsListView
 import com.example.newskotlin.ui.OnNavigationListener
+import com.example.newskotlin.ui.activity.ToolBarManager
 import com.example.newskotlin.ui.adapter.NewsListAdapter
 import kotlinx.android.synthetic.main.fragment_news_list.view.*
 import moxy.MvpAppCompatFragment
@@ -24,7 +25,7 @@ class NewsListFragment : MvpAppCompatFragment(), NewsListView {
     private val presenter: NewsListPresenter by moxyPresenter { NewsListPresenter() }
     private lateinit var onNavigationListener: OnNavigationListener
     private lateinit var newsRecyclerView: RecyclerView
-
+    private lateinit var toolBarManager: ToolBarManager
     private lateinit var activityContext: Context
     private lateinit var adapter: NewsListAdapter
     private lateinit var manager: LinearLayoutManager
@@ -35,11 +36,13 @@ class NewsListFragment : MvpAppCompatFragment(), NewsListView {
         super.onAttach(context)
         activityContext = context
         onNavigationListener = context as OnNavigationListener
+        toolBarManager = context as ToolBarManager
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_news_list, container, false)
         newsRecyclerView = view.newsRecycleView
+        toolBarManager.hideBackButton()
         return view
     }
 

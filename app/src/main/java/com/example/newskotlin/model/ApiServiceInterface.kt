@@ -26,7 +26,7 @@ interface ApiServiceInterface {
                           @SerializedName("totalResults") @Expose val totalResults: Int,
                           @SerializedName("articles") @Expose val articles: ArrayList<Articles>)
 
-    @GET("everything?q=bitcoin&pageSize=10")
+    @GET("everything?q=anime&pageSize=10")
     fun getNews(@Query("page") page: Int, @Query("apiKey") apiKey: String): Observable<NewsModel>
 
     companion object Factory {
